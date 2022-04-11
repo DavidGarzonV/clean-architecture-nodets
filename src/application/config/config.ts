@@ -1,5 +1,5 @@
-import { assignObject } from '../../infrastructure/utils/objects';
 import convict from 'convict';
+import { assignObject } from '../../infrastructure/utils/objects';
 import configSchema from './schema';
 
 const loadCustom = (environment: string): object => {
@@ -32,6 +32,9 @@ const loadConfig = () => {
 		redis: {
 			host: process.env.NODE_API_REDIS_HOST,
 			port: +(process.env.NODE_API_REDIS_PORT || 6379)
+		},
+		external: {
+			usersApi: process.env.NODE_API_USERS_API,
 		}
 	};
 

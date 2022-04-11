@@ -8,34 +8,42 @@ info:
 host: "localhost:8080"
 basePath: "/api/v1"
 tags:
-- name: "Offers"
-  description: "Offers Management"
-schemes:  
-- "http"
-- "https"
+  - name: "Offers"
+    description: "Offers Management"
+schemes:
+  - "http"
+  - "https"
 paths:
   /offers:
-      post:
-        parameters:
+    post:
+      parameters:
         - in: "body"
           name: "body"
           description: "Offer data for creation"
           required: true
           schema:
             $ref: "#/definitions/Offer"
-        operationId: "addOfer"
-        responses:
-          "200":
-            description: "Successful response"
-          "400":
-            description: "Offer name already created"
-      get:
-        operationId: "getOffers"
-        responses:
-          "200":
-            description: "Successful response"
-          "400":
-            description: "Bad request"
+      operationId: "addOfer"
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Offer name already created"
+    get:
+      operationId: "getOffers"
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad request"
+  /users:
+    get:
+      operationId: "getUsers"
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Offer name already created"
 definitions:
   Offer:
     type: "object"

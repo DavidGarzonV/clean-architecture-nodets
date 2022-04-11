@@ -14,4 +14,7 @@ export default {
 		host: { doc: 'Host of redis server', default: '', format: String },
 		port: { doc: 'Port of redis server', default: '', format: Number }
 	},
+	external: {
+		usersApi: { doc: 'URL of users API', default: '', format: String }
+	}
 };
