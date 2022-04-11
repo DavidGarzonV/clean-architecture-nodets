@@ -16,13 +16,25 @@ schemes:
 paths:
   /offers:
     post:
+      consumes:
+        - multipart/form-data
       parameters:
-        - in: "body"
-          name: "body"
-          description: "Offer data for creation"
+        - in: formData
+          name: "name"
+          type: "string"
+          description: "Offer name"
+          default: "New offer"
           required: true
-          schema:
-            $ref: "#/definitions/Offer"
+        - in: formData
+          name: "description"
+          type: "string"
+          description: "Offer description"
+          default: "New description"
+          required: true
+        - in: formData
+          name: "image"
+          type: "file"
+          description: "Offer image"
       operationId: "addOfer"
       responses:
         "200":
@@ -44,15 +56,3 @@ paths:
           description: "Successful response"
         "400":
           description: "Offer name already created"
-definitions:
-  Offer:
-    type: "object"
-    properties:
-      name:
-        type: "string"
-        default: "Offer 1"
-      description:
-        type: "string"
-        default: "Offer description"
-    xml:
-      name: "Offer"

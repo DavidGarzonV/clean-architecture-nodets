@@ -20,6 +20,7 @@ const loadConfig = () => {
 	const envConfig = {
 		environment,
 		port: process.env.NODE_PORT || 8080,
+		uploadpath: process.env.NODE_UPLOAD_PATH,
 		database: {
 			host: process.env.NODE_API_DB_HOST || 'localhost',
 			port: process.env.NODE_API_DB_PORT || '5432',
@@ -34,7 +35,7 @@ const loadConfig = () => {
 			port: +(process.env.NODE_API_REDIS_PORT || 6379)
 		},
 		external: {
-			usersApi: process.env.NODE_API_USERS_API,
+			usersApi: process.env.NODE_USERS_API,
 		}
 	};
 

@@ -2,6 +2,7 @@ node_modules/
 dist/
 logs/
 coverage/
+uploads/
 .env
 .log
 package-lock.json

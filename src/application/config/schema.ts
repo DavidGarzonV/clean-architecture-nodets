@@ -1,6 +1,7 @@
 export default {
 	environment: { doc: 'Environment', default: 'local', format: String },
   port: { doc: 'Port', default: 8080, format: Number },
+  uploadpath: { doc: 'Upload file path', default: 'uploads', format: String },
 	database: {
 		host: { doc: 'Host of database server', default: '', format: String },
 		port: { doc: 'Port of database', default: '', format: Number },

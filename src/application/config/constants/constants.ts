@@ -64,3 +64,18 @@ export const STATUS_CODE = {
   NOT_EXTENDED: 510,
   AUTHENTICATION_REQUIRED: 511
 };
+
+export const VALIDATION_ERRORS = {
+  invalidImage: 'Invalid image format',
+  uploadMax: 'Files exceed the maximum allowed size'
+}
+
+export type fileTypes = 'image'
+
+export const imageMimeTypes: string[] = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+];
+
+export const maxImageFileSize = 625000; // 5 MB

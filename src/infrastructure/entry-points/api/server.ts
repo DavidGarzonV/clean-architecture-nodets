@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import YAML from 'yamljs';
+import multer from 'multer';
 import { init as routesInit } from './routers/routes';
 import { handle as errorsHandle } from './middlewares/errors';
 import config from '../../../application/config/config';
@@ -12,12 +13,15 @@ import logger from '../../../application/logger/logger';
 export const startup = {
   start: async () => {
     const app: express.Express = express();
+    const upload = multer();
 
     try {
       await sequelize.authenticate({ logging: false });
 
       app.use(cors({ origin: '*' }));
       app.use(bodyParser.json());
+      app.use(upload.any());
+
       app.get('/', (_, res) => {
         res.send('Using global strict transport security policy!');
       });
