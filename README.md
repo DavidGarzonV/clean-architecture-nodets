@@ -14,7 +14,11 @@ npm install
 ```
 npm run dev
 ```
-  Navigate to `http://localhost:8080`
+- Run tests
+```
+npm run test
+```
+  Navigate to `http://localhost:${NODE_PORT}`
 - API Document endpoints
   swagger-ui Endpoint : http://localhost:8001/api-docs 
 
