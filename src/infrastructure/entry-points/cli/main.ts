@@ -3,6 +3,7 @@ import { OfferRepositoryImpl } from '../../gateways/repositories/offerRepository
 import { Offer } from '../../../domain/entities/offer.entity';
 import { createOfferMenu } from './menu/offers/create-offer/actions/index';
 import { CreateOfferUseCase } from '../../../domain/usecase/create-offer/createOffer.usecase';
+import logger from '../../../application/logger/logger';
 
 export class Main {
 
@@ -15,7 +16,7 @@ export class Main {
 			const offerCreated: Offer = await createOfferUseCase.run(offer);
 			return offerCreated;
 		} catch (error) {
-			console.log('Error creating offer', error)
+			logger.error('Error creating offer', error)
 		}
 
 		return null;
@@ -36,7 +37,7 @@ export class Main {
 
 			return offers;
 		} catch (error) {
-			console.log('Error getting offers')
+			logger.error('Error getting offers')
 		}
 	}
 }

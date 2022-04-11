@@ -7,6 +7,7 @@ import { init as routesInit } from './routers/routes';
 import { handle as errorsHandle } from './middlewares/errors';
 import config from '../../../application/config/config';
 import sequelize from '../../driven-adapters/sequelize/connection/connection';
+import logger from '../../../application/logger/logger';
 
 export const startup = {
   start: async () => {
@@ -25,13 +26,13 @@ export const startup = {
       app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
       app.listen(config.get('port'), () => {
-        console.info(`Application listening on port: ${config.get('port')}`);
+        logger.info(`Application listening on port: ${config.get('port')}`);
       })
 
       routesInit(app);
       app.use(errorsHandle);
     } catch (err) {
-      console.error('Fail to start application');
+      logger.error('Fail to start application');
       throw err;
     }
   }
