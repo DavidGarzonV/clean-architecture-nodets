@@ -1,8 +1,8 @@
-import { GetOffersUseCase } from '../../../domain/usecase/get-offers/getOffers.usecase';
+import { GetOffersUseCase } from '../../../domain/usecase/offers/get-offers/getOffers.usecase';
 import { OfferRepositoryImpl } from '../../gateways/repositories/offerRepository.impl';
 import { Offer } from '../../../domain/entities/offer.entity';
 import { createOfferMenu } from './menu/offers/create-offer/actions/index';
-import { CreateOfferUseCase } from '../../../domain/usecase/create-offer/createOffer.usecase';
+import { CreateOfferUseCase } from '../../../domain/usecase/offers/create-offer/createOffer.usecase';
 import logger from '../../../application/logger/logger';
 
 export class Main {

@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { createOfferController } from '../../controllers/createOffer.controller';
-import { classValidator } from '../../middlewares/validator';
+import { getOffersController, createOfferController, updateOfferController } from '../../controllers';
+import { fileValidator, classValidator } from '../../middlewares';
 import { createOfferDTO } from '../../dto/createOffer.dto';
-import { getOffersController } from '../../controllers/getOffers.controller';
-import { fileValidator } from '../../middlewares/fileValidator';
+import { updateOfferDTO } from '../../dto/updateOffer.dto';
 
 const router = Router();
 router.post(
@@ -15,6 +14,11 @@ router.get(
   '/',
   [],
   getOffersController,
+);
+router.put(
+  '/:id',
+  [classValidator(updateOfferDTO, 'params')],
+  updateOfferController,
 );
 
 export default router;

@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { User } from '../../../domain/entities/user.entity';
 import { UsersRepository } from '../../../domain/repositories/user.repository';
-import config from '../../../application/config/config';
-import axios from 'axios';
+import config from '../../../application/config/index';
 
 export class APIUsersImpl implements UsersRepository {
 	private _url: string = '';

@@ -1,5 +1,5 @@
-import { OfferRepository } from '../../repositories/offer.repository';
-import { Offer } from '../../entities/offer.entity';
+import { OfferRepository } from '../../../repositories/offer.repository';
+import { Offer } from '../../../entities/offer.entity';
 
 export class GetOffersUseCase {
 

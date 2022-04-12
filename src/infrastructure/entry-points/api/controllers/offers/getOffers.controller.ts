@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import sequelize from '../../../driven-adapters/sequelize/connection/connection';
-import { GetOffersUseCase } from '../../../../domain/usecase/get-offers/getOffers.usecase';
-import { OfferRepositoryImpl } from '../../../gateways/repositories/offerRepository.impl';
-import { Offer } from '../../../../domain/entities/offer.entity';
-import { StatusCodes } from '../../../../application/config/constants/enums';
+import { Offer } from './../../../../../domain/entities/offer.entity';
+import { GetOffersUseCase } from '../../../../../domain/usecase/offers/get-offers/getOffers.usecase';
+import { sequelize } from './../../../../driven-adapters/sequelize/connection/index';
+import { OfferRepositoryImpl } from '../../../../gateways/repositories/offerRepository.impl';
 
 export const getOffersController = async (req: Request, res: Response, next: NextFunction) => {
 	const transaction = await sequelize.transaction();
@@ -15,7 +14,7 @@ export const getOffersController = async (req: Request, res: Response, next: Nex
 		const offers: Offer[] = await getOffersUseCase.run(transaction);
 		await transaction.commit();
 
-		res.status(StatusCodes.SUCCESS).json({ offers });
+		res.json({ offers });
 	} catch (error) {
 		await transaction.rollback();
 		next(error);

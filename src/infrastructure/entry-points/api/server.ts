@@ -6,9 +6,9 @@ import YAML from 'yamljs';
 import multer from 'multer';
 import { init as routesInit } from './routers/routes';
 import { handle as errorsHandle } from './middlewares/errors';
-import config from '../../../application/config/config';
-import sequelize from '../../driven-adapters/sequelize/connection/connection';
-import logger from '../../../application/logger/logger';
+import { sequelize } from '../../driven-adapters/sequelize/connection';
+import config from '../../../application/config';
+import logger from '../../../application/logger/winston';
 
 export const startup = {
   start: async () => {

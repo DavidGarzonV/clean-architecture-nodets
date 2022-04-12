@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { File } from './../../domain/entities/file.entity';
-import config from '../../application/config/config';
 import { FileUploader } from '../../domain/utils/fileUploader';
+import config from '../../application/config';
 
 
 export class LocalFileUploader implements FileUploader {

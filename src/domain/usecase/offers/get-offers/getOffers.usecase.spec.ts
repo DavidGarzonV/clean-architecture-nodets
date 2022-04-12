@@ -1,6 +1,6 @@
 import { GetOffersUseCase } from './getOffers.usecase';
-import { mockOfferRepository } from '../../../../test/mocks/offers/offerRepository.mock';
-import { mockOffer, mockNewOffer } from '../../../../test/mocks/offers/offer.mock';
+import { mockOfferRepository } from '../../../../../test/mocks/offers/offerRepository.mock';
+import { mockOffer, mockNewOffer } from '../../../../../test/mocks/offers/offer.mock';
 
 describe('getOffers', () => {
 	let getOffersUseCase: GetOffersUseCase;

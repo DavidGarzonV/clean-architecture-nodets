@@ -1,8 +1,14 @@
-import { File } from './../../entities/file.entity';
-import { OfferRepository } from '../../repositories/offer.repository';
-import { Offer } from '../../entities/offer.entity';
-import { ThereIsAlreadyAnOffer } from '../../exceptions';
-import { FileUploader } from '../../utils/fileUploader';
+import { File } from '../../../entities/file.entity';
+import { OfferRepository } from '../../../repositories/offer.repository';
+import { Offer } from '../../../entities/offer.entity';
+import { ThereIsAlreadyAnOffer } from '../../../exceptions';
+import { FileUploader } from '../../../utils/fileUploader';
+
+type Params = {
+	offer: Offer,
+	files: File[],
+	transaction?: any
+}
 
 export class CreateOfferUseCase {
 
@@ -11,7 +17,8 @@ export class CreateOfferUseCase {
 		private fileUploader: FileUploader,
 	) { }
 
-	async run(offer: Offer, files: File[], transaction?: any): Promise<Offer> {
+	async run(data: Params): Promise<Offer> {
+		const { offer, files, transaction }  =data;
 		const existentOffer = await this.offerRepository.getByName(offer.name);
 		if (existentOffer) throw new ThereIsAlreadyAnOffer();
 

@@ -1,10 +1,9 @@
 import { CreateOfferUseCase } from './createOffer.usecase';
-import ThereIsAlreadyAnOffer from '../../exceptions/thereIsAlreadyAnOffer.exception';
-import { mockOfferRepository } from '../../../../test/mocks/offers/offerRepository.mock';
-import { mockNewOffer, mockOffer } from '../../../../test/mocks/offers/offer.mock';
-import { mockFileUploader, uploadMethodMock } from '../../../../test/mocks/helpers/fileUploader.mock';
-import { mockFile } from '../../../../test/mocks/file.mock';
-import { Offer } from '../../entities/offer.entity';
+import { mockOfferRepository } from '../../../../../test/mocks/offers/offerRepository.mock';
+import { mockFileUploader, uploadMethodMock } from '../../../../../test/mocks/helpers/fileUploader.mock';
+import { mockNewOffer, mockOffer } from '../../../../../test/mocks/offers/offer.mock';
+import { mockFile } from '../../../../../test/mocks/file.mock';
+import ThereIsAlreadyAnOffer from '../../../exceptions/thereIsAlreadyAnOffer.exception';
 
 describe('createOffer', () => {
 	let createOfferUseCase: CreateOfferUseCase;
@@ -21,7 +20,7 @@ describe('createOffer', () => {
 
 	test('should create and return new offer', async () => {
 		(mockOfferRepository.create as jest.Mock).mockResolvedValue(mockNewOffer);
-		const newOffer = await createOfferUseCase.run(mockOffer, [])
+		const newOffer = await createOfferUseCase.run({ offer: mockOffer, files: [] })
 
 		expect(newOffer).toBe(mockNewOffer)
 	});
@@ -31,7 +30,10 @@ describe('createOffer', () => {
 		const imagePath = 'uploads/upload.png';
 		(mockFileUploader.upload as jest.Mock).mockResolvedValue(imagePath);
 
-		await createOfferUseCase.run(mockOffer, files);
+		await createOfferUseCase.run({
+			offer: mockOffer,
+			files
+		});
 		expect(uploadMethodMock).toHaveBeenCalled();
 		expect(mockOfferRepository.create).toHaveBeenCalledWith({
 			...mockOffer,
@@ -43,9 +45,9 @@ describe('createOffer', () => {
 		(mockOfferRepository.getByName as jest.Mock).mockResolvedValue(mockNewOffer);
 
 		try {
-			await createOfferUseCase.run(mockOffer, [])
+			await createOfferUseCase.run({ offer: mockOffer, files: [] });
 		} catch (error) {
-			expect(error).toBeInstanceOf(ThereIsAlreadyAnOffer)
+			expect(error).toBeInstanceOf(ThereIsAlreadyAnOffer);
 		}
 	});
 });

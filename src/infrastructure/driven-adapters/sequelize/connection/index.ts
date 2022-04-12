@@ -1,5 +1,5 @@
 import { Options, Dialect, Sequelize } from 'sequelize';
-import config from '../../../../application/config/config';
+import config from '../../../../application/config';
 
 const database = config.get('database');
 
@@ -10,6 +10,4 @@ const options: Options = {
   dialect: database.dialect as Dialect,
 }
 
-const sequelize = new Sequelize(database.name, database.username, database.password, options);
-
-export default sequelize;
+export const sequelize = new Sequelize(database.name, database.username, database.password, options);

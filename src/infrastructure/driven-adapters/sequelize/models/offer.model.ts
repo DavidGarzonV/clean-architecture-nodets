@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { v4 as uuid } from 'uuid';
-import sequelize from '../connection/connection';
+import { sequelize } from '../connection';
 
 class OfferModel extends Model { }
 

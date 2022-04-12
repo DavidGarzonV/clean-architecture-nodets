@@ -1,6 +1,6 @@
 import { Offer } from '../../../src/domain/entities/offer.entity';
 
-export const mockOffer: Offer = {
+export const mockOffer = {
 	name: 'Offer test',
 	description: 'Offer description test'
 }

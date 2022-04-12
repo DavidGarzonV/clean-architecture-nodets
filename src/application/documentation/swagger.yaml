@@ -5,17 +5,31 @@ info:
   title: "Clean Architecture"
   contact:
     email: "david.garzon@gmail.com"
-host: "localhost:8080"
 basePath: "/api/v1"
 tags:
   - name: "Offers"
     description: "Offers Management"
+  - name: "Users"
+    description: "Users Management"
 schemes:
   - "http"
   - "https"
 paths:
   /offers:
+    get:
+      tags:
+        - "Offers"
+      description: "Get all offers"
+      operationId: "getOffers"
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad request"
     post:
+      tags:
+        - "Offers"
+      description: "Create an offer"
       consumes:
         - multipart/form-data
       parameters:
@@ -41,8 +55,30 @@ paths:
           description: "Successful response"
         "400":
           description: "Offer name already created"
-    get:
-      operationId: "getOffers"
+  /offers/{offerId}:
+    put:
+      tags:
+        - "Offers"
+      description: "Updates an offer"
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: "offerId"
+          type: "string"
+          description: "Offer id"
+          required: true
+        - in: formData
+          name: "name"
+          type: "string"
+          description: "Offer name"
+          default: "New offer"
+        - in: formData
+          name: "description"
+          type: "string"
+          description: "Offer description"
+          default: "New description"
+      operationId: "updateOffer"
       responses:
         "200":
           description: "Successful response"
@@ -50,9 +86,12 @@ paths:
           description: "Bad request"
   /users:
     get:
+      tags:
+        - "Users"
+      description: "Get all users"
       operationId: "getUsers"
       responses:
         "200":
           description: "Successful response"
         "400":
-          description: "Offer name already created"
+          description: "Bad request"

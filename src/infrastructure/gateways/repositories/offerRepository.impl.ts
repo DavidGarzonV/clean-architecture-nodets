@@ -4,6 +4,10 @@ import { OfferRepository } from '../../../domain/repositories/offer.repository';
 import OfferModel from '../../driven-adapters/sequelize/models/offer.model';
 
 export class OfferRepositoryImpl implements OfferRepository {
+	async getById(id: string): Promise<Offer | undefined> {
+		const offer = await OfferModel.findByPk(id);
+		if (offer) return offer.toJSON<Offer>();
+	}
 
 	async getByName(name: string): Promise<Offer | undefined> {
 		const offer = await OfferModel.findOne({
@@ -25,5 +29,12 @@ export class OfferRepositoryImpl implements OfferRepository {
 	async get(transaction?: any): Promise<Offer[]> {
 		const offersQuery = await OfferModel.findAll({ transaction });
 		return offersQuery.map((item) => item.toJSON<Offer>());
+	}
+
+	async update(id: string, offer: object): Promise<{ affectedCount: number; }> {
+		const [affectedCount] = await OfferModel.update(offer, {
+			where: { id }
+		});
+		return { affectedCount };
 	}
 }

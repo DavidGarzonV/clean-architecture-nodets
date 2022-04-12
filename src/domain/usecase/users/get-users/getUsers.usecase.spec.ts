@@ -1,6 +1,6 @@
 import { GetUsersUseCase } from './getUsers.usecase';
-import { mockUsersApi } from '../../../../test/mocks/users/usersApi.mock';
-import { mockUser } from '../../../../test/mocks/users/users.mock';
+import { mockUsersApi } from '../../../../../test/mocks/users/usersApi.mock';
+import { mockUser } from '../../../../../test/mocks/users/users.mock';
 
 describe('getUsers', () => {
 	let getUsersUseCase: GetUsersUseCase;
