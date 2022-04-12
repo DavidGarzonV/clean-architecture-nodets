@@ -3,7 +3,8 @@ import { OfferRepositoryImpl } from '../../gateways/repositories/offerRepository
 import { Offer } from '../../../domain/entities/offer.entity';
 import { createOfferMenu } from './menu/offers/create-offer/actions/index';
 import { CreateOfferUseCase } from '../../../domain/usecase/offers/create-offer/createOffer.usecase';
-import logger from '../../../application/logger/logger';
+import { LocalFileUploader } from '../../helpers/localFileUploader.impl';
+import logger from '../../../application/logger/winston';
 
 export class Main {
 
@@ -11,9 +12,10 @@ export class Main {
 		try {
 			const createOfferUseCase = new CreateOfferUseCase(
 				new OfferRepositoryImpl(),
+				new LocalFileUploader(),
 			);
 	
-			const offerCreated: Offer = await createOfferUseCase.run(offer);
+			const offerCreated: Offer = await createOfferUseCase.run({ offer, files: []});
 			return offerCreated;
 		} catch (error) {
 			logger.error('Error creating offer', error)
