@@ -10,8 +10,8 @@ import { sequelize } from '../../driven-adapters/sequelize/connection';
 import config from '../../../application/config';
 import logger from '../../../application/logger/winston';
 
-export const startup = {
-  start: async () => {
+class RestServerApp {
+  async start() {
     const app: express.Express = express();
     const upload = multer();
 
@@ -40,4 +40,6 @@ export const startup = {
       throw err;
     }
   }
-};
+}
+
+export default RestServerApp;

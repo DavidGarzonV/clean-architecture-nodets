@@ -5,8 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "npm run build && node ./dist/index.js",
-    "start-cli": "npm run build && node ./dist/infrastructure/entry-points/cli/server.js",
+    "start": "npm run build && node ./dist/infrastructure/entry-points/start.js",
+    "start-rest-app": "npm run build && node ./dist/infrastructure/entry-points/api/index.js",
+    "start-cli-app": "npm run build && node ./dist/infrastructure/entry-points/cli/index.js",
     "dev": "nodemon",
     "test": "NODE_ENV=testing jest --coverage"
   },
